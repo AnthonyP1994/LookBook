@@ -47,14 +47,14 @@ class Message
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    public function getcreationDate(): ?\DateTimeInterface
     {
-        return $this->creationdate;
+        return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeInterface $creationDate): self
+    public function setcreationDate(\DateTimeInterface $creationDate): self
     {
-        $this->creationdate = $creationDate;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
