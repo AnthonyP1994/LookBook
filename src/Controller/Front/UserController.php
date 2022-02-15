@@ -10,7 +10,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/connexion", name="app_admin_user_login")
+     * @Route("/connexion", name="app_front_user_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -32,5 +32,13 @@ class UserController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    /**
+     * @Route("/", name="app_front_user_home")
+     */
+    public function home(): Response
+    {
+        return $this->render('Front/home.html.twig');
     }
 }
