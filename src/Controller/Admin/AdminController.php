@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\User;
@@ -19,36 +20,46 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 class AdminController extends AbstractController
 {
 
-    protected function listEntities(ServiceEntityRepository $repository): Response
+    protected function listEntities(ServiceEntityRepository $repository, String $name): Response
     {
         $entites = $repository->findAll();
 
-        return $this->render("", [
+        return $this->render("Admin/" . $name . "/index.html.twig", [
             'data' => $entites,
         ]);
     }
 
 
 
-    /**
-     * @Route("/admin/create-user",name="app_admin_user_create")
-     */
-    public function Create(Request $request, EntityManagerInterface $entityManager): Response
+
+    public function new(Request $request, FormInterface $form, String $name, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class);
+
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
+            $entityManager->persist($form->getData());
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('Admin_' . $name . '_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('Admin/User/create.html.twig', [
-            'user' => $user,
-            'form' => $form,
+        return $this->renderForm('Admin/' . $name . '/create",new.html.twig', [
+            'data' => $form->getData(),
+            'form' => $form->createView(),
         ]);
+    }
+
+
+    //.....Controller
+    public function getEntityName(): String
+    {
+        $parts = explode("\\", $this::class);
+
+        $last = end($parts);
+        $tabLast = explode("Controller", $last);
+
+        return $tabLast[0];
     }
 }

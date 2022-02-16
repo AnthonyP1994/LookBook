@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+<table>
+    <tr>
+        <td>N°</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Adresses</td>
+        <td>Role</td>
+    </tr>
+    {% for label in data %}
+    <tr>
+        <td>{{label.id}}</td>
+        <td>{{label.name}}</td>
+        <td>{{label.email}}</td>
+        <td>
+        {% for address in label.addresses %}
+             {{address}}
+       
+        {% endfor %} 
+        </td>
+        <td>   
+        {% for role in label.roles %}
+             {{role}}
+       
+        {% endfor %} </td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
