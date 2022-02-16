@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -21,9 +22,28 @@ class UserType extends AbstractType
             // ->add('roles',Entity ['multiple' => false, 'expanded' => false])
 
             ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
-            ->add('adresses', TextType::class, ['label' => 'Adresse'])
-            ->add('billingAddress', TextType::class, ['label' => 'Adresse de Facturation'])
-            ->add('delieveryAddress', TextType::class, ['label' => 'Adresse de livraison'])
+            ->add(
+                'billingAddress',
+                EntityType::class,
+                [
+                    'label' => 'Adresse de Facturation :',
+                    'multiple' => false,
+                    'expanded' => false,
+                    'class' => Address::class,
+                    'required' => false
+                ]
+            )
+            ->add(
+                'deliveryAddress',
+                EntityType::class,
+                [
+                    'label' => 'Adresse de livraison :',
+                    'multiple' => false,
+                    'expanded' => false,
+                    'class' => Address::class,
+                    'required' => false
+                ]
+            )
             ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('submit', SubmitType::class, ['label' => 'Envoyer']);
     }

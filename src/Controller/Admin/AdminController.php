@@ -32,7 +32,7 @@ class AdminController extends AbstractController
 
 
 
-    public function new(Request $request, FormInterface $form, String $name, EntityManagerInterface $entityManager): Response
+    protected function newEntity(Request $request, FormInterface $form, String $name, EntityManagerInterface $entityManager): Response
     {
 
 
@@ -42,10 +42,10 @@ class AdminController extends AbstractController
             $entityManager->persist($form->getData());
             $entityManager->flush();
 
-            return $this->redirectToRoute('Admin_' . $name . '_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_' . $name . '_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('Admin/' . $name . '/create",new.html.twig', [
+        return $this->render('Admin/' . $name . '/create.html.twig', [
             'data' => $form->getData(),
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class AdminController extends AbstractController
 
 
     //.....Controller
-    public function getEntityName(): String
+    protected function getEntityName(): String
     {
         $parts = explode("\\", $this::class);
 
