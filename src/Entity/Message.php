@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\UpdatableEntity;
+use App\Repository\MessageRepository;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
-class Message
+class Message implements UpdatableEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

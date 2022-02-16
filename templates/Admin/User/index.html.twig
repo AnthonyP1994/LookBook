@@ -3,7 +3,7 @@
 
 
 {% block body %}
-
+<a href="{{ path('app_admin_user_create') }}">Ajout d'un utilisateur</a>
 <table>
     <tr>
         <td>N°</td>
@@ -11,6 +11,7 @@
         <td>Email</td>
         <td>Adresses</td>
         <td>Role</td>
+        <td>Actions</td>
     </tr>
     {% for label in data %}
     <tr>
@@ -28,6 +29,7 @@
              {{role}}
        
         {% endfor %} </td>
+        <td><a href="{{ path('app_admin_user_edit', {id: label.id}) }}">Modifier</a> -<a href="{{ path('app_admin_user_delete',{id:label.id}) }}"> Supprimer</a></td>
         
     </tr>
     {% endfor %}
