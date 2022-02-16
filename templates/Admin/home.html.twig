@@ -3,7 +3,8 @@
 {% block body %}
     <h1>Bienvenue sur la Page Administrateur</h1>
 <ul>
-    <li><a href="#">Gestion des utilisateurs</a></li>
+    <li><a href="{{ path('app_admin_user_create') }}
+">Gestion des utilisateurs</a></li>
     <li><a href="#">Gestion des adresses</a></li>
     <li><a href="#">Gestion des auteurs</a></li>
     <li><a href="#">Gestion des maisons d'édition</a></li>
