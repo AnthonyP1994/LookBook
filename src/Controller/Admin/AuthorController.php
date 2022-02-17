@@ -48,9 +48,9 @@ class AuthorController extends AdminController
     }
 
     /**
-     * @Route("/admin/auteurs/{id}/supprimer",name="app_admin_author_delete")
+     * @Route("/admin/auteurs/{id}/supprimer", name="app_admin_author_delete")
      */
-    public function delete(EntityManagerInterface $manager,  Author $author): Response
+    public function delete(EntityManagerInterface $manager, Author $author): Response
     {
         $name = $this->getEntityName();
 

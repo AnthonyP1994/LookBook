@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\AuthorRepository;
+use App\Entity\UpdatableEntity;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AuthorRepository;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
-class Author
+class Author implements UpdatableEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
