@@ -26,5 +26,5 @@ App\Entity\Address:
 App\Entity\Author:
   author_{1..3}:
     name: "<word()>"
-    birthdate: <dateTime()>
-    description: <paragraph()>
+    birthdate: "<date()>"
+    description: "<paragraph()>"
