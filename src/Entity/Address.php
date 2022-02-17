@@ -5,8 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\UpdatableEntity;
 use App\Repository\AddressRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
+// use Doctrine\Common\Collections\Collection;
+// use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 class Address implements UpdatableEntity
@@ -31,13 +31,13 @@ class Address implements UpdatableEntity
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $supplement;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'addresses')]
-    private $users;
+    // #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'addresses')]
+    // private $users;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->users = new ArrayCollection();
+    // }
 
 
     public function getId(): ?int
@@ -105,30 +105,30 @@ class Address implements UpdatableEntity
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
+    // /**
+    //  * @return Collection|User[]
+    //  */
+    // public function getUsers(): Collection
+    // {
+    //     return $this->users;
+    // }
 
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addAddress($this);
-        }
+    // public function addUser(User $user): self
+    // {
+    //     if (!$this->users->contains($user)) {
+    //         $this->users[] = $user;
+    //         $user->addAddress($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeAddress($this);
-        }
+    // public function removeUser(User $user): self
+    // {
+    //     if ($this->users->removeElement($user)) {
+    //         $user->removeAddress($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

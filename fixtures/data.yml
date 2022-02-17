@@ -11,3 +11,12 @@ App\Entity\User:
     # password : password
     password: \$2y\$13\$4nFdXU0byci3BWK1YwEopOrkJHJ0ShdIq9B9fmucjiL5dM9cy15Wy
     name: "AdminTest"
+
+App\Entity\Address:
+  address_{1..10}:
+    postCode: "<randomNumber(5, true)>"
+    city: "<word()>"
+    street: "<sentence()>"
+    number: "<randomNumber(3, true)>"
+    supplement: "<sentence()>"
+

@@ -17,45 +17,41 @@ class UserController extends AdminController
 {
 
     /**
-     * @Route("/listUser",name="app_admin_user_list")
+     * @Route("/admin/utilisateurs",name="app_admin_user_list")
      */
     public function list(UserRepository $repoUser): Response
     {
-        dump("test");
         $name = $this->getEntityName();
         return $this->listEntities($repoUser, $name);
     }
 
     /**
-     * @Route("/createUser",name="app_admin_user_create")
+     * @Route("/admin/utilisateurs/creer",name="app_admin_user_create")
      */
     public function create(Request $request, EntityManagerInterface $manager): Response
     {
-        $name = strtolower($this->getEntityName());
+        $name = $this->getEntityName();
         $form = $this->createForm(UserType::class, null);
-        dump($form);
+
         return $this->newEntity($request, $form, $name, $manager);
     }
 
     /**
-     * @Route("/editUser/{id}",name="app_admin_user_edit")
+     * @Route("/admin/utilisateurs/{id}/modifier",name="app_admin_user_edit")
      */
     public function edit(Request $request, User $user, EntityManagerInterface $manager): Response
     {
-        dump("hello");
-        dump($user);
-        $name = strtolower($this->getEntityName());
+        $name = $this->getEntityName();
         $form = $this->createForm(UserType::class, $user);
 
         return $this->editEntity($request, $form, $name, $manager);
     }
 
     /**
-     * @Route("/deleteUser/{id}",name="app_admin_user_delete")
+     * @Route("/admin/utilisateurs/{id}/supprimer",name="app_admin_user_delete")
      */
     public function delete(EntityManagerInterface $manager,  User $user): Response
     {
-        dump($user);
         $name = $this->getEntityName();
 
         return $this->deleteEntity($user, $name, $manager);

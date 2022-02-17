@@ -20,15 +20,16 @@
         <td>{{label.email}}</td>
         <td>
         {% for address in label.addresses %}
-             {{address}}
-       
+            {{address}}
+        
         {% endfor %} 
         </td>
         <td>   
         {% for role in label.roles %}
-             {{role}}
-       
-        {% endfor %} </td>
+            {{role}}
+        
+        {% endfor %}
+        </td>
         <td><a href="{{ path('app_admin_user_edit', {id: label.id}) }}">Modifier</a> -<a href="{{ path('app_admin_user_delete',{id:label.id}) }}"> Supprimer</a></td>
         
     </tr>

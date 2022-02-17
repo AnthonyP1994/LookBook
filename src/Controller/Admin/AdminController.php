@@ -38,9 +38,9 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($form->getData());
             $entityManager->flush();
-            $this->addFlash('success', "Votre insertion a bien été prise en compte :)");
+            $this->addFlash('success', "Votre insertion a bien été prise en compte ;)");
 
-            return $this->redirectToRoute('app_admin_' . $name . '_list', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_' . strtolower($name) . '_list', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('Admin/' . $name . '/create.html.twig', [
             'data' => $form->getData(),
@@ -54,9 +54,9 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($form->getData());
             $entityManager->flush();
-            $this->addFlash('success', "Votre mise à jour a bien été prise en compte :)");
+            $this->addFlash('success', "Votre modification a bien été prise en compte ;)");
 
-            return $this->redirectToRoute('app_admin_' . $name . '_list', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_' . strtolower($name) . '_list', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('Admin/' . $name . '/edit.html.twig', [
@@ -71,10 +71,10 @@ class AdminController extends AbstractController
         $manager->remove($entity);
         $manager->flush();
 
-        $this->addFlash('success', "Votre suppression a bien été prise en compte :)");
+        $this->addFlash('success', "Votre suppression a bien été prise en compte ;)");
 
         return $this->redirectToRoute(
-            "app_admin_' . $name . '_list"
+            "app_admin_" . strtolower($name) . "_list"
         );
     }
 

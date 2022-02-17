@@ -1,0 +1,13 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+
+<h1>Veuillez modifier les données de votre utilisateur</h1>
+    {{ form(form) }}
+
+    
+
+    <a href="{{ path('app_admin_address_list') }}">back to list</a>
+{% endblock %}
