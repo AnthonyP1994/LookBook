@@ -27,6 +27,9 @@ class User  implements UserInterface, PasswordAuthenticatedUserInterface, Updata
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\ManyToMany(targetEntity: Address::class)]
+    private $addresses;
+
     #[ORM\ManyToOne(targetEntity: Address::class)]
     #[ORM\JoinColumn(nullable: true)]
     private $billingAddress;
@@ -34,9 +37,6 @@ class User  implements UserInterface, PasswordAuthenticatedUserInterface, Updata
     #[ORM\ManyToOne(targetEntity: Address::class)]
     #[ORM\JoinColumn(nullable: true)]
     private $deliveryAddress;
-
-    #[ORM\ManyToMany(targetEntity: Address::class, inversedBy: 'users')]
-    private $addresses;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
@@ -138,30 +138,6 @@ class User  implements UserInterface, PasswordAuthenticatedUserInterface, Updata
         // $this->plainPassword = null;
     }
 
-    public function getBillingAddress(): ?Address
-    {
-        return $this->billingAddress;
-    }
-
-    public function setBillingAddress(?Address $billingAddress): self
-    {
-        $this->billingAddress = $billingAddress;
-
-        return $this;
-    }
-
-    public function getDeliveryAddress(): ?Address
-    {
-        return $this->deliveryAddress;
-    }
-
-    public function setDeliveryAddress(?Address $deliveryAddress): self
-    {
-        $this->deliveryAddress = $deliveryAddress;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Address[]
      */
@@ -182,6 +158,31 @@ class User  implements UserInterface, PasswordAuthenticatedUserInterface, Updata
     public function removeAddress(Address $address): self
     {
         $this->addresses->removeElement($address);
+
+        return $this;
+    }
+
+
+    public function getBillingAddress(): ?Address
+    {
+        return $this->billingAddress;
+    }
+
+    public function setBillingAddress(?Address $billingAddress): self
+    {
+        $this->billingAddress = $billingAddress;
+
+        return $this;
+    }
+
+    public function getDeliveryAddress(): ?Address
+    {
+        return $this->deliveryAddress;
+    }
+
+    public function setDeliveryAddress(?Address $deliveryAddress): self
+    {
+        $this->deliveryAddress = $deliveryAddress;
 
         return $this;
     }

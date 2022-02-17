@@ -4,6 +4,9 @@ App\Entity\User:
     roles: ["ROLE_USER"]
     # password : password
     password: \$2y\$13\$4nFdXU0byci3BWK1YwEopOrkJHJ0ShdIq9B9fmucjiL5dM9cy15Wy
+    addresses: ["@address_*"]
+    billingAddress: "@address_*"
+    deliveryAddress: "@address_*"
     name: "user"
   admin:
     email: admin@mail.com

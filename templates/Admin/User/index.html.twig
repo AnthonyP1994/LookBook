@@ -18,12 +18,9 @@
         <td>{{label.id}}</td>
         <td>{{label.name}}</td>
         <td>{{label.email}}</td>
-        <td>
         {% for address in label.addresses %}
-            {{address}}
-        
+            <td>{{address.number}} {{address.street}} - {{address.postCode}} {{address.city}} {{address.supplement}}</td>
         {% endfor %} 
-        </td>
         <td>   
         {% for role in label.roles %}
             {{role}}
