@@ -23,3 +23,8 @@ App\Entity\Address:
     number: "<randomNumber(3, true)>"
     supplement: "<sentence()>"
 
+App\Entity\Author:
+  author_{1..3}:
+    name: "<word()>"
+    birthdate: <dateTime()>
+    description: <paragraph()>
