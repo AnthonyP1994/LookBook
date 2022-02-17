@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+
+<h1>Mon profil</h1>
+<div> Nom:  {{app.user.name}}</div>
+<div> E-mail:  {{app.user.email}}</div>
+
+{% for address in app.user.addresses %}
+    <div>Adresse : {{address.number}} {{address.street}} - {{address.postCode}} {{address.city}} <br>{{address.supplement}}</div>
+
+{% endfor %}
+{# 
+{% if app.user.billingAddress %}
+    <div> Adresse de facturation: {{app.user.billingAddress}} </div> 
+{% endif %}
+
+{% if app.user.deliveryAddress %}
+    <div> Adresse de livraison:  {{app.user.deliveryAddress}}</div>
+{% endif %} #}
+
+    <a href="{{path('app_front_user_showAllProfiles')}}">Retour à la liste</a>
+{% endblock %}
