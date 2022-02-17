@@ -1,0 +1,30 @@
+{% extends 'Admin/base.html.twig' %}
+
+
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="flash-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<a href="{{ path('app_admin_publisher_create') }}">Ajout d'une maison d'édition</a>
+<table>
+    <tr>
+        <td>N°</td>
+        <td>Libellé de la maison d'édition</td>
+        <td>Description</td>
+    </tr>
+    {% for label in data %}
+    <tr>
+        <td>{{label.id}}</td>
+        <td>{{label.title}}</td>
+        <td>{{label.description}}</td>
+        <td><a href="{{ path('app_admin_publisher_edit', {id: label.id}) }}">Modifier</a> - <a href="{{ path('app_admin_publisher_delete',{id:label.id}) }}"> Supprimer</a></td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
