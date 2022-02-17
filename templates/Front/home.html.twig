@@ -5,4 +5,7 @@
 {% if is_granted('ROLE_ADMIN') %}
         <p>Vous êtes administrateur</p>
 {% endif %}
+    <a href="{{ path('app_front_user_myProfile') }}">Voir mon profil</a>
+    <a href="{{ path('app_front_user_showAllProfiles') }}">Voir les profils</a>
+
 {% endblock %}

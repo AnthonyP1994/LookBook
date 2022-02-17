@@ -3,7 +3,8 @@
 namespace App\Controller\Front;
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\SubscriptionType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +40,7 @@ class UserController extends AbstractController
      */
     public function subscription(Request $request,  UserPasswordHasherInterface $crypter,    EntityManagerInterface $manager): Response
     {
-        $form = $this->createForm(UserType::class);
+        $form = $this->createForm(SubscriptionType::class);
 
         $form->handleRequest($request);
 
@@ -61,18 +62,29 @@ class UserController extends AbstractController
             return new Response('Inscription OK');
         }
 
-        return $this->render('Front/User/inscription.html.twig', [
+        return $this->render('Front/User/subscription.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/mon-profile/{id}", name="app_front_user_showProfile")
+     * @Route("/profil/{id}", name="app_front_user_showProfile")
      */
-    public function showProfile(USer $user): Response
+    public function showProfile(User $user): Response
     {
-        dump($user);
-        return $this->render('Front/User/profile.html.twig', [
+        return $this->render('Front/showProfile.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/mon-profil", name="app_front_user_myProfile")
+     */
+    public function myProfile(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('Front/User/myProfile.html.twig', [
             'user' => $user,
         ]);
     }
@@ -92,5 +104,18 @@ class UserController extends AbstractController
     public function home(): Response
     {
         return $this->render('Front/home.html.twig');
+    }
+
+    /**
+     * @Route("/les-profils", name="app_front_user_showAllProfiles")
+     */
+    public function showAllProfiles(UserRepository $repository): Response
+    {
+        $users = $repository->findAll();
+
+        return $this->render(
+            'Front/showAllProfiles.html.twig',
+            ['users' => $users]
+        );
     }
 }

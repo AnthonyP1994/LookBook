@@ -6,11 +6,6 @@
 
 <h1>Mon profil</h1>
 <div> Nom:  {{user.name}}</div>
-<div>Email :  {{user.email}}</div>
- <div>Mot de passe: {{user.password}}</div>
-<div> adresse: 
- <ul>
- </ul>
-</div>
-    <a href="">back to list</a>
+{# <div>Email :  {{user.email}}</div> #}
+    <a href="{{path('app_front_user_showAllProfiles')}}">Retour à la liste</a>
 {% endblock %}
