@@ -41,7 +41,7 @@ App\Entity\Publisher:
 App\Entity\Book: 
   book_{1..10}": 
     ESBN: "<randomNumber(5,true)>"
-    authors: "@author_*"
+    authors: ["@author_*"]
     categories: ["@category_*"]
     description: <paragraph()>
     formatType: <word()>

@@ -68,7 +68,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profil/{id}", name="app_front_user_showProfile")
+     * @Route("/profils/{id}", name="app_front_user_showProfile")
      */
     public function showProfile(User $user): Response
     {
@@ -107,7 +107,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/les-profils", name="app_front_user_showAllProfiles")
+     * @Route("/profils", name="app_front_user_showAllProfiles")
      */
     public function showAllProfiles(UserRepository $repository): Response
     {
