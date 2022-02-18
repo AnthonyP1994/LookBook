@@ -18,12 +18,11 @@ class CategoryType extends AbstractType
                 'label' => 'Nom de la categorie :'
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Insérer'
-            ])
-        ;
+                'label' => 'Envoyer'
+            ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver,): void
     {
         $resolver->setDefaults([
             'data_class' => Category::class,

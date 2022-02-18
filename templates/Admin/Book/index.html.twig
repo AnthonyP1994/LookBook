@@ -1,0 +1,46 @@
+{% extends 'Admin/base.html.twig' %}
+
+
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="flash-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<a href="{{ path('app_admin_book_create') }}">Ajout d'un livre</a><br>
+<table>
+    <tr>
+        <td>N°</td>
+        <td>Numero</td>
+        <td>Titre </td>
+        <td>Prix</td>
+        <td>Description</td>
+        <td>Categorie</td>
+        <td>Format</td>
+        <td>Langue</td>
+        <td>Nombre de page</td>
+        <td>Date de publication</td>
+    </tr>
+    {% for label in data %}
+    <tr>
+        <td>{{label.id}}</td>
+        <td>{{label.ESBN}}</td>
+        <td>{{label.title}}</td>
+        <td>{{label.price}}</td>
+        <td>{{label.description}}</td>
+         {% for category in label.categories %}
+            <td>{{category.title}} </td>
+        {% endfor %} 
+        <td>{{label.formatType}}</td>
+        <td>{{label.language}}</td>
+        <td>{{label.pageNumber}}</td>
+        <td>{{label.publicationDate|date("m/d/Y")}}</td>
+        <td><a href="{{ path('app_admin_book_edit', {id: label.id}) }}">Modifier</a> -<a href="{{ path('app_admin_book_delete',{id:label.id}) }}"> Supprimer</a></td>
+        
+    </tr>
+    {% endfor %}
+</table>
+    <a href="{{ path('app_admin_admin_home') }}">Retour à l'accueil</a> 
+
+{% endblock %}
