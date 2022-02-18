@@ -1,0 +1,13 @@
+{% extends 'Front/home.html.twig' %}
+
+{% block title %}LookBook - {{author.name}} {% endblock %}
+
+{% block main %}
+<div>
+    <a href="{{ path('app_front_author_list') }}">Retour à la liste des auteurs</a>
+</div>
+
+<h1>{{author.name}}</h1>
+<p>Date de naissance : {{author.birthDate|date("m/d/Y")}}</p>
+<p>{{author.description}}</p>
+{% endblock %}
