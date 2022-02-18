@@ -1,0 +1,13 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}Modifier une Catégorie{% endblock %}
+
+{% block body %}
+
+<h1>Veuillez modifier les données de la catégorie concernée :</h1>
+    {{ form(form) }}
+
+    
+
+    <a href="{{ path('app_admin_author_list') }}">Retour à la liste</a>
+{% endblock %}

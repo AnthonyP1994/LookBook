@@ -1,0 +1,28 @@
+{% extends 'Admin/base.html.twig' %}
+
+
+
+{% block body %}
+{% for message in app.flashes('success') %}
+    <div class="flash-success">
+        {{ message }}
+    </div>
+{% endfor %}
+<a href="{{ path('app_admin_category_create') }}">Ajout d'une catégorie</a><br>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Titre de la catégorie</td>
+    </tr>
+    {% for label in data %}
+    <tr>
+        <td>{{label.id}}</td>
+        <td>{{label.title}}</td>
+        <td><a href="{{ path('app_admin_category_edit', {id: label.id}) }}">Modifier</a> -<a href="{{ path('app_admin_category_delete',{id:label.id}) }}"> Supprimer</a></td>
+        
+    </tr>
+    {% endfor %}
+</table>
+    <a href="{{ path('app_admin_admin_home') }}">Retour à l'accueil</a> 
+
+{% endblock %}
