@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Form\SubscriptionType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -68,7 +67,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profils/{id}", name="app_front_user_showProfile")
+     * @Route("/profil/{id}", name="app_front_user_showProfile")
      */
     public function showProfile(User $user): Response
     {
@@ -107,7 +106,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profils", name="app_front_user_showAllProfiles")
+     * @Route("/profil", name="app_front_user_showAllProfiles")
      */
     public function showAllProfiles(UserRepository $repository): Response
     {
