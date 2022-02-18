@@ -1,11 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'Front/home.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}LookBook - Profil{% endblock %}
 
-{% block body %}
-
-<h1>Mon profil</h1>
+{% block main %}
+<h1>Profil de {{user.name}}</h1>
 <div> Nom:  {{user.name}}</div>
 {# <div>Email :  {{user.email}}</div> #}
-    <a href="{{path('app_front_user_showAllProfiles')}}">Retour à la liste</a>
 {% endblock %}

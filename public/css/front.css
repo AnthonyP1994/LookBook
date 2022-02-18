@@ -1,0 +1,45 @@
+/* --------------------------- */
+/*            NAVBAR           */
+/* --------------------------- */
+.navbar {
+    height: 7rem;
+    width: 100%;
+    background-color: rgba(58, 91, 135, 1);
+}
+.navbar ul {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.navbar ul li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.navbar ul li:first-child {
+    margin-right: auto;
+}
+.navbar ul li:last-child{
+    margin-left: auto;
+}
+.navbar span {
+    font-size: 2.5rem;
+    color: rgb(141, 178, 228);
+}
+.navbar ul li a {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 2rem;
+}
+.navbar ul li a::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 0%;
+    height: 0.2rem;
+    background: #f1f1f1;
+    transition: width 0.2s ease-in-out;
+}
+.navbar ul li a:hover::after {
+    width: 100%;
+}
